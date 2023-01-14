@@ -3,15 +3,20 @@ import * as S from './styles'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
 import { TransactionsTable } from './components/Table'
+import { SearchForm } from './components/SearchForm'
+import { Container } from '../../components/Container'
 
 export function Transactions() {
   return (
     <div>
       <Header />
-      <Summary />
-      <S.TransactionsTableContainer>
-        <TransactionsTable />
-      </S.TransactionsTableContainer>
+      <Container>
+        <Summary />
+        <S.TransactionsTableContainer>
+          <SearchForm />
+          <TransactionsTable />
+        </S.TransactionsTableContainer>
+      </Container>
     </div>
   )
 }
