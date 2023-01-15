@@ -1,25 +1,26 @@
+import { useContext } from 'react'
+import { TransactionsContext } from '../../../../contexts/TransactionContext'
+
 import * as S from './styles'
 
 export function TransactionsTable() {
+  const { transactions } = useContext(TransactionsContext)
+
   return (
     <S.TransactionsTableContainer>
       <tbody>
-        <tr>
-          <td width="50%">Desenvolvimento de site</td>
-          <td>
-            <S.PriceHighlight variant="income">R$ 12.000,00</S.PriceHighlight>
-          </td>
-          <td>Venda</td>
-          <td>13/04/2022</td>
-        </tr>
-        <tr>
-          <td width="50%">Hamburguer</td>
-          <td>
-            <S.PriceHighlight variant="outcome">- R$ 59,00</S.PriceHighlight>
-          </td>
-          <td>Alimentação</td>
-          <td>13/04/2022</td>
-        </tr>
+        {transactions.map((transaction) => (
+          <tr key={transaction.id}>
+            <td width="50%">{transaction.description}</td>
+            <td>
+              <S.PriceHighlight variant="income">
+                {transaction.price}
+              </S.PriceHighlight>
+            </td>
+            <td>{transaction.category}</td>
+            <td>{transaction.createdAt}</td>
+          </tr>
+        ))}
       </tbody>
     </S.TransactionsTableContainer>
   )
