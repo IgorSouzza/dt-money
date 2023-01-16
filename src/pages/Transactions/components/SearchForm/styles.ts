@@ -1,4 +1,14 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const spinningAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+`
 
 export const SearchFormContainer = styled.form`
   display: flex;
@@ -29,8 +39,18 @@ export const SearchFormContainer = styled.form`
     color: ${(props) => props.theme['green-300']};
     font-weight: bold;
     border-radius: 6px;
+    cursor: pointer;
 
-    &:hover {
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+
+      svg {
+        animation: ${spinningAnimation} 2s linear infinite;
+      }
+    }
+
+    &:not(:disabled):hover {
       background: ${(props) => props.theme['green-500']};
       border: 1px solid ${(props) => props.theme['green-500']};
       color: ${(props) => props.theme.white};
